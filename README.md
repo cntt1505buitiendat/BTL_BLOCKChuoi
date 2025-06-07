@@ -63,3 +63,74 @@ Hệ thống này giám sát người tham gia giao thông trong thời gian th�
 ---
 
 ## ⚙️ Cài đặt
+
+### 1. Cài đặt thư viện cần thiết:
+
+```bash
+pip install flask opencv-python ultralytics web3 pandas numpy
+```
+
+### 2. Khởi tạo Ganache (Ethereum local):
+
+* Tải và chạy Ganache.
+* Lấy địa chỉ ví và private key cho tài khoản đầu tiên.
+* Deploy smart contract (đã có ABI trong `contract_abi.json`).
+* Cập nhật:
+
+  * `contract_address`
+  * `sender`
+  * `private_key`
+
+### 3. Chạy ứng dụng Flask:
+
+```bash
+python app.py
+```
+
+Truy cập tại: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
+---
+
+## 🎥 Kết nối ESP32-CAM
+
+* Cập nhật IP stream ESP32-CAM trong `app.py`:
+
+```python
+ESP32_CAM_URL = "http://<ip-của-ESP32>/stream"
+```
+
+---
+
+## 🚀 Các API chính
+
+| Endpoint      | Mô tả                          |
+| ------------- | ------------------------------ |
+| `/`           | Giao diện upload ảnh/video     |
+| `/upload`     | Xử lý file gửi lên (ảnh/video) |
+| `/stream`     | Giao diện xem livestream ESP32 |
+| `/video_feed` | API cung cấp MJPEG stream      |
+| `/stats`      | Hiển thị biểu đồ thống kê      |
+| `/stats_json` | Dữ liệu JSON thống kê          |
+
+---
+
+## 📈 Log & Blockchain
+
+* Vi phạm không đội mũ sẽ:
+
+  * Lưu ảnh tại `logs/images`
+  * Ghi dòng log vào `logs/violations.csv`
+  * Gửi mô tả lên Ethereum smart contract.
+
+---
+
+## 🛠️ Gợi ý mở rộng
+
+* ✅ Kết nối IPFS để lưu ảnh vi phạm phi tập trung.
+* ✅ Thêm chức năng gửi cảnh báo qua Telegram/email.
+* ✅ Triển khai lên server thật (VPS) với HTTPS.
+* ✅ Huấn luyện lại mô hình YOLO với tập dữ liệu lớn hơn.
+
+---
+
+## 📷 Demo (gợi ý thêm ảnh/video nếu cần)
